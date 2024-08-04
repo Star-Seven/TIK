@@ -15,14 +15,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4.1.8
+      - name: Calculate Release Version
+        id: calculate_version
+        run: echo "RELEASE_VERSION=$(( ${{ github.run_number }} + 154 ))" >> $GITHUB_ENV
       - name: Rename Tool
         run: |
           cd TIK-win
-          move ./TIK-win.zip ../TIK-5-${{ github.run_number }}-win.zip
+          move ./TIK-win.zip ../TIK-5-${{ env.RELEASE_VERSION }}-win.zip
           cd ..
           cd TIK-linux
           ls
-          move ./TIK-linux.zip ../TIK-5-${{ github.run_number }}-linux.zip
+          move ./TIK-linux.zip ../TIK-5-${{ env.RELEASE_VERSION }}-linux.zip
           cd ..
       - name: Upload release
         uses: ncipollo/release-action@v1.14.0
