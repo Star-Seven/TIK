@@ -1057,16 +1057,16 @@ def pack_img(
     size = img_size0 / int(settings.BLOCKSIZE)
     size = int(size)
     if img_type == "erofs":
-        print(
-            rf"mkfs.erofs \
-                -z{settings.erofslim} \
-                -T {utc} \
-                --mount-point=/{img_name} \
-                --fs-config-file={fs_config} \
-                --file-contexts={file_contexts} \
-                {out_img} \
-                {in_files}"
-        )
+        # print(
+        #     rf"mkfs.erofs \
+        #         -z{settings.erofslim} \
+        #         -T {utc} \
+        #         --mount-point=/{img_name} \
+        #         --fs-config-file={fs_config} \
+        #         --file-contexts={file_contexts} \
+        #         {out_img} \
+        #         {in_files}"
+        # )
         os.system(
             rf"{get_binary_path('mkfs.erofs')} \
                 -z{settings.erofslim} \
